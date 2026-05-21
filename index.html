@@ -8,72 +8,70 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
 <style>
-:root {
-  --bg: #F8F7F4;
-  --surface: #FFFFFF;
-  --border: rgba(0,0,0,0.1);
-  --border-soft: rgba(0,0,0,0.06);
-  --text: #1C1C1A;
-  --muted: #6B6B68;
-  --hint: #A8A8A5;
-  --green: #1D9E75;
-  --green-bg: #EAF3DE;
-  --green-text: #27500A;
-  --blue-bg: #E6F1FB;
-  --blue-text: #0C447C;
-  --gray-bg: #F1EFE8;
-  --gray-text: #444441;
-  --red: #A32D2D;
-  --red-bg: #FCEBEB;
-  --red-text: #791F1F;
-  --amber-bg: #FAEEDA;
-  --amber-text: #633806;
-  --radius: 10px;
-  --radius-sm: 6px;
+:root{
+  --bg:#F8F7F4;--surface:#fff;--border:rgba(0,0,0,.1);--border-soft:rgba(0,0,0,.06);
+  --text:#1C1C1A;--muted:#6B6B68;--hint:#A8A8A5;
+  --green:#1D9E75;--green-bg:#EAF3DE;--green-text:#27500A;
+  --blue-bg:#E6F1FB;--blue-text:#0C447C;
+  --gray-bg:#F1EFE8;--gray-text:#444441;
+  --red:#A32D2D;--red-bg:#FCEBEB;--red-text:#791F1F;
+  --amber-bg:#FAEEDA;--amber-text:#633806;
+  --radius:10px;--radius-sm:6px;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Noto Sans TC',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;padding:0}
+body{font-family:'Noto Sans TC',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
 ::selection{background:#C0DD97;color:#173404}
 
 header{background:var(--surface);border-bottom:1px solid var(--border-soft);padding:1.25rem 2rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
 .header-left{display:flex;flex-direction:column;gap:3px}
-.proj-title{font-family:'Noto Serif TC',serif;font-size:17px;font-weight:600;color:var(--text);letter-spacing:.01em}
+.proj-title{font-family:'Noto Serif TC',serif;font-size:17px;font-weight:600;color:var(--text)}
 .proj-sub{font-size:12px;color:var(--muted)}
-.header-right{display:flex;align-items:center;gap:10px}
+.header-right{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.hdr-btn{font-size:12px;padding:5px 12px;border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--surface);color:var(--muted);cursor:pointer;display:flex;align-items:center;gap:5px;font-family:'Noto Sans TC',sans-serif}
+.hdr-btn:hover{background:var(--bg);color:var(--text)}
 .sync-badge{font-size:11px;padding:4px 12px;border-radius:20px;display:flex;align-items:center;gap:5px;background:var(--gray-bg);color:var(--gray-text)}
 .sync-badge.saving{background:var(--blue-bg);color:var(--blue-text)}
 .sync-badge.saved{background:var(--green-bg);color:var(--green-text)}
 .sync-badge.err{background:var(--red-bg);color:var(--red-text)}
-.export-btn{font-size:12px;padding:5px 12px;border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--surface);color:var(--muted);cursor:pointer;display:flex;align-items:center;gap:5px;font-family:'Noto Sans TC',sans-serif}
-.export-btn:hover{background:var(--bg);color:var(--text)}
-.edit-title-btn{font-size:12px;padding:5px 12px;border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--surface);color:var(--muted);cursor:pointer;display:flex;align-items:center;gap:5px;font-family:'Noto Sans TC',sans-serif}
-.edit-title-btn:hover{background:var(--bg);color:var(--text)}
-.title-edit-panel{background:var(--surface);border:1px solid var(--border-soft);border-radius:var(--radius);padding:1.25rem 1.5rem;margin-bottom:1.5rem;display:none}
-.title-edit-panel.open{display:block}
-.title-edit-panel label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;display:block;margin-bottom:5px;margin-top:12px}
-.title-edit-panel label:first-child{margin-top:0}
-.title-edit-panel input{width:100%;font-size:14px;padding:7px 10px;border:1px solid var(--border);border-radius:var(--radius-sm);font-family:'Noto Serif TC',serif;background:var(--bg);color:var(--text);outline:none}
-.title-edit-panel input:focus{border-color:var(--green)}
-.title-edit-panel input.sub{font-family:'Noto Sans TC',sans-serif;font-size:13px}
-.panel-actions{display:flex;gap:8px;margin-top:14px}
-.btn-save{font-size:12px;padding:5px 16px;border:none;border-radius:var(--radius-sm);background:var(--green);color:#fff;cursor:pointer;font-family:'Noto Sans TC',sans-serif}
-.btn-save:hover{opacity:.88}
-.btn-cancel{font-size:12px;padding:5px 14px;border:1px solid var(--border);border-radius:var(--radius-sm);background:transparent;color:var(--muted);cursor:pointer;font-family:'Noto Sans TC',sans-serif}
-.btn-cancel:hover{background:var(--bg)}
 
 main{max-width:900px;margin:0 auto;padding:2rem 1.5rem}
 
+/* notice box */
+.notice-box{background:var(--surface);border:1px solid var(--border-soft);border-left:3px solid var(--amber-text);border-radius:var(--radius);padding:1rem 1.25rem;margin-bottom:1.5rem}
+.notice-label{font-size:11px;color:var(--amber-text);text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px;display:flex;align-items:center;gap:5px}
+.notice-textarea{width:100%;min-height:60px;border:none;background:transparent;font-family:'Noto Sans TC',sans-serif;font-size:13px;color:var(--text);resize:vertical;outline:none;line-height:1.7}
+.notice-textarea::placeholder{color:var(--hint)}
+
+/* edit panels */
+.edit-panel{background:var(--surface);border:1px solid var(--border-soft);border-radius:var(--radius);padding:1.25rem 1.5rem;margin-bottom:1.5rem;display:none}
+.edit-panel.open{display:block}
+.edit-panel label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;display:block;margin-bottom:5px;margin-top:12px}
+.edit-panel label:first-child{margin-top:0}
+.edit-panel input{width:100%;font-size:14px;padding:7px 10px;border:1px solid var(--border);border-radius:var(--radius-sm);font-family:'Noto Serif TC',serif;background:var(--bg);color:var(--text);outline:none}
+.edit-panel input:focus,.edit-panel textarea:focus{border-color:var(--green)}
+.edit-panel input.sub{font-family:'Noto Sans TC',sans-serif;font-size:13px}
+.panel-actions{display:flex;gap:8px;margin-top:14px}
+.btn-green{font-size:12px;padding:5px 16px;border:none;border-radius:var(--radius-sm);background:var(--green);color:#fff;cursor:pointer;font-family:'Noto Sans TC',sans-serif}
+.btn-green:hover{opacity:.88}
+.btn-outline{font-size:12px;padding:5px 14px;border:1px solid var(--border);border-radius:var(--radius-sm);background:transparent;color:var(--muted);cursor:pointer;font-family:'Noto Sans TC',sans-serif}
+.btn-outline:hover{background:var(--bg)}
+
+/* summary */
 .summary-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:2rem}
 .stat{background:var(--surface);border:1px solid var(--border-soft);border-radius:var(--radius);padding:1rem 1.25rem}
 .stat-label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}
 .stat-val{font-size:26px;font-weight:700;color:var(--text)}
 .stat-val.danger{color:var(--red)}
 
-.milestone{background:var(--surface);border:1px solid var(--border-soft);border-radius:var(--radius);margin-bottom:.75rem;overflow:hidden;transition:box-shadow .2s}
-.milestone:hover{box-shadow:0 2px 12px rgba(0,0,0,.06)}
-.ms-header{display:flex;align-items:center;gap:10px;padding:.9rem 1.25rem;cursor:pointer;user-select:none}
-.ms-name-input{font-size:14px;font-weight:500;flex:1;color:var(--text);border:none;background:transparent;font-family:'Noto Sans TC',sans-serif;outline:none;cursor:text}
-.ms-meta{display:flex;align-items:center;gap:8px}
+/* milestone */
+.milestone{background:var(--surface);border:1px solid var(--border-soft);border-radius:var(--radius);margin-bottom:.75rem;overflow:visible;transition:box-shadow .2s}
+.milestone.dragging{opacity:.5;box-shadow:0 4px 20px rgba(0,0,0,.12)}
+.milestone.drag-over{border-color:var(--green);box-shadow:0 0 0 2px var(--green-bg)}
+.ms-header{display:flex;align-items:center;gap:8px;padding:.9rem 1.25rem;cursor:pointer;user-select:none}
+.drag-handle{cursor:grab;color:var(--hint);font-size:16px;padding:2px;display:flex;align-items:center;flex-shrink:0}
+.drag-handle:active{cursor:grabbing}
+.ms-name-input{font-size:14px;font-weight:500;flex:1;color:var(--text);border:none;background:transparent;font-family:'Noto Sans TC',sans-serif;outline:none}
+.ms-meta{display:flex;align-items:center;gap:6px}
 .pct-badge{font-size:11px;font-weight:500;padding:2px 9px;border-radius:20px;background:var(--green-bg);color:var(--green-text)}
 .pct-badge.low{background:var(--gray-bg);color:var(--gray-text)}
 .pct-badge.mid{background:var(--blue-bg);color:var(--blue-text)}
@@ -84,21 +82,38 @@ main{max-width:900px;margin:0 auto;padding:2rem 1.5rem}
 .progress-wrap{height:3px;background:var(--bg);margin:0 1.25rem .8rem}
 .progress-bar{height:3px;border-radius:2px;background:var(--green);transition:width .4s ease}
 
-.tasks-area{border-top:1px solid var(--border-soft)}
-.col-head{font-size:11px;color:var(--hint);padding:.4rem 1.25rem;display:grid;grid-template-columns:22px 1fr 80px 100px 80px 26px;gap:8px;background:var(--bg);letter-spacing:.05em}
-.task-row{display:grid;grid-template-columns:22px 1fr 80px 100px 80px 26px;align-items:center;gap:8px;padding:.6rem 1.25rem;border-bottom:1px solid var(--border-soft);font-size:13px;transition:background .15s}
+/* tasks */
+.tasks-area{border-top:1px solid var(--border-soft);overflow:hidden;border-radius:0 0 var(--radius) var(--radius)}
+.col-head{font-size:11px;color:var(--hint);padding:.4rem 1.25rem;display:grid;grid-template-columns:22px 1fr 80px 100px 80px 28px 22px;gap:6px;background:var(--bg);letter-spacing:.05em}
+.task-row{display:grid;grid-template-columns:22px 1fr 80px 100px 80px 28px 22px;align-items:start;gap:6px;padding:.6rem 1.25rem;border-bottom:1px solid var(--border-soft);font-size:13px;transition:background .15s}
 .task-row:last-child{border-bottom:none}
 .task-row:hover{background:#FAFAF8}
-input[type=checkbox]{width:15px;height:15px;cursor:pointer;accent-color:var(--green);flex-shrink:0}
-.task-cell{display:flex;flex-direction:column;gap:1px;min-width:0}
+input[type=checkbox]{width:15px;height:15px;cursor:pointer;accent-color:var(--green);flex-shrink:0;margin-top:2px}
+.task-cell{display:flex;flex-direction:column;gap:2px;min-width:0}
 .task-name{color:var(--text);outline:none;border:none;background:transparent;font-size:13px;width:100%;font-family:'Noto Sans TC',sans-serif}
 .task-name.done{text-decoration:line-through;color:var(--hint)}
+.task-detail{font-size:11px;color:var(--muted);border:none;background:transparent;width:100%;font-family:'Noto Sans TC',sans-serif;outline:none;resize:none;line-height:1.5;overflow:hidden}
+.task-detail::placeholder{color:var(--hint)}
 .countdown{font-size:11px;color:var(--hint)}
 .countdown.urgent{color:var(--red)}
-.task-owner{font-size:12px;border:none;background:transparent;color:var(--muted);font-family:'Noto Sans TC',sans-serif;width:100%;text-align:center;outline:none}
-.task-date{font-size:12px;border:none;background:transparent;color:var(--muted);font-family:'Noto Sans TC',sans-serif;width:100%;outline:none}
-.status-sel{font-size:11px;border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--surface);color:var(--text);padding:2px 5px;font-family:'Noto Sans TC',sans-serif;cursor:pointer;width:100%}
-.del-btn{background:none;border:none;cursor:pointer;color:var(--hint);font-size:14px;display:flex;align-items:center;padding:2px;border-radius:4px}
+.task-owner{font-size:12px;border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--surface);color:var(--text);font-family:'Noto Sans TC',sans-serif;width:100%;text-align:center;outline:none;margin-top:2px;padding:2px 4px;cursor:pointer}
+.task-owner:focus{border-color:var(--green)}
+.sort-btn{font-size:11px;background:none;border:none;cursor:pointer;color:var(--hint);display:inline-flex;align-items:center;gap:3px;padding:0;font-family:'Noto Sans TC',sans-serif;margin-left:4px}
+.sort-btn:hover{color:var(--text)}
+.sort-btn.active{color:var(--green)}
+/* owner manager panel */
+.owner-list{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.owner-tag{display:inline-flex;align-items:center;gap:4px;font-size:12px;padding:3px 10px;border-radius:20px;background:var(--gray-bg);color:var(--gray-text)}
+.owner-tag button{background:none;border:none;cursor:pointer;color:var(--hint);font-size:12px;padding:0;display:flex;align-items:center}
+.owner-tag button:hover{color:var(--red)}
+.owner-add-row{display:flex;gap:6px;margin-top:10px}
+.owner-add-row input{flex:1;font-size:13px;padding:6px 10px;border:1px solid var(--border);border-radius:var(--radius-sm);font-family:'Noto Sans TC',sans-serif;background:var(--bg);color:var(--text);outline:none}
+.owner-add-row input:focus{border-color:var(--green)}
+.task-date{font-size:12px;border:none;background:transparent;color:var(--muted);font-family:'Noto Sans TC',sans-serif;width:100%;outline:none;margin-top:2px}
+.status-sel{font-size:11px;border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--surface);color:var(--text);padding:2px 4px;font-family:'Noto Sans TC',sans-serif;cursor:pointer;width:100%;margin-top:2px}
+.detail-toggle{background:none;border:none;cursor:pointer;color:var(--hint);font-size:13px;display:flex;align-items:center;padding:1px;border-radius:3px;margin-top:2px}
+.detail-toggle:hover{color:var(--green)}
+.del-btn{background:none;border:none;cursor:pointer;color:var(--hint);font-size:14px;display:flex;align-items:center;padding:2px;border-radius:4px;margin-top:1px}
 .del-btn:hover{color:var(--red);background:var(--red-bg)}
 .add-row{padding:.6rem 1.25rem;background:var(--surface)}
 .add-task-btn{font-size:12px;background:none;border:none;cursor:pointer;color:var(--hint);display:flex;align-items:center;gap:4px;padding:0;font-family:'Noto Sans TC',sans-serif}
@@ -111,7 +126,7 @@ footer{text-align:center;padding:2rem;font-size:12px;color:var(--hint);margin-to
 
 @media(max-width:640px){
   .summary-grid{grid-template-columns:repeat(2,1fr)}
-  .col-head,.task-row{grid-template-columns:22px 1fr 0 90px 70px 22px}
+  .col-head,.task-row{grid-template-columns:22px 1fr 0 90px 70px 22px 18px}
   .col-head .owner-col,.task-owner{display:none}
   header{padding:1rem}
   main{padding:1rem}
@@ -126,23 +141,45 @@ footer{text-align:center;padding:2rem;font-size:12px;color:var(--hint);margin-to
     <span class="proj-sub" id="disp-sub">2026 設計系畢業展覽　Huwei Cultural Revival Project</span>
   </div>
   <div class="header-right">
-    <button class="edit-title-btn" onclick="toggleTitlePanel()" id="edit-title-btn"><i class="ti ti-pencil" style="font-size:13px"></i> 編輯標題</button>
-    <button class="export-btn" onclick="exportCSV()"><i class="ti ti-download" style="font-size:13px"></i> 匯出 CSV</button>
+    <button class="hdr-btn" onclick="togglePanel('title-panel','edit-title-btn','編輯標題')" id="edit-title-btn"><i class="ti ti-pencil" style="font-size:13px"></i> 編輯標題</button>
+    <button class="hdr-btn" onclick="togglePanel('owner-panel','manage-owner-btn','管理成員')" id="manage-owner-btn"><i class="ti ti-users" style="font-size:13px"></i> 管理成員</button>
+    <button class="hdr-btn" onclick="exportCSV()"><i class="ti ti-download" style="font-size:13px"></i> 匯出 CSV</button>
     <span class="sync-badge saved" id="sync-badge"><i class="ti ti-check" style="font-size:12px"></i> 已同步</span>
   </div>
 </header>
 
 <main>
-  <div class="title-edit-panel" id="title-panel">
+  <!-- 編輯標題 panel -->
+  <div class="edit-panel" id="title-panel">
     <label>主標題</label>
     <input id="input-title" value="虎尾文化再生 × SDGs — 畢製專案管控" placeholder="主標題">
     <label>副標題</label>
     <input class="sub" id="input-sub" value="2026 設計系畢業展覽　Huwei Cultural Revival Project" placeholder="副標題">
     <div class="panel-actions">
-      <button class="btn-save" onclick="saveTitle()">儲存</button>
-      <button class="btn-cancel" onclick="toggleTitlePanel()">取消</button>
+      <button class="btn-green" onclick="saveTitle()">儲存</button>
+      <button class="btn-outline" onclick="togglePanel('title-panel','edit-title-btn','編輯標題')">取消</button>
     </div>
   </div>
+
+  <!-- 管理成員 panel -->
+  <div class="edit-panel" id="owner-panel">
+    <label>成員名單</label>
+    <div class="owner-list" id="owner-list"></div>
+    <div class="owner-add-row">
+      <input id="new-owner-input" placeholder="輸入新成員名稱" onkeydown="if(event.key==='Enter')addOwner()">
+      <button class="btn-green" onclick="addOwner()"><i class="ti ti-plus" style="font-size:13px"></i> 新增</button>
+    </div>
+    <div class="panel-actions" style="margin-top:10px">
+      <button class="btn-outline" onclick="togglePanel('owner-panel','manage-owner-btn','管理成員')">關閉</button>
+    </div>
+  </div>
+
+
+  <div class="notice-box">
+    <div class="notice-label"><i class="ti ti-alert-triangle" style="font-size:13px"></i> 注意事項</div>
+    <textarea class="notice-textarea" id="notice-textarea" placeholder="在這裡輸入給所有人看的注意事項、提醒或公告…" oninput="saveNotice(this)"></textarea>
+  </div>
+
   <div class="summary-grid" id="summary"></div>
   <div id="milestones"></div>
   <button class="add-ms-btn" onclick="addMilestone()"><i class="ti ti-circle-plus" style="font-size:15px"></i> 新增里程碑</button>
@@ -151,161 +188,247 @@ footer{text-align:center;padding:2rem;font-size:12px;color:var(--hint);margin-to
 <footer>虎尾・雲林・2026　— 此頁面資料儲存於您的瀏覽器 localStorage</footer>
 
 <script>
-const TITLE_KEY = 'huwei_tracker_title_v1';
-
-function loadTitle(){
-  try{
-    const t = JSON.parse(localStorage.getItem(TITLE_KEY));
-    if(t){
-      document.getElementById('disp-title').textContent = t.title;
-      document.getElementById('disp-sub').textContent = t.sub;
-      document.getElementById('input-title').value = t.title;
-      document.getElementById('input-sub').value = t.sub;
-      document.title = t.title;
-    }
-  }catch(e){}
-}
-
-function toggleTitlePanel(){
-  const panel = document.getElementById('title-panel');
-  const btn = document.getElementById('edit-title-btn');
-  const isOpen = panel.classList.toggle('open');
-  btn.innerHTML = isOpen
-    ? '<i class="ti ti-x" style="font-size:13px"></i> 關閉'
-    : '<i class="ti ti-pencil" style="font-size:13px"></i> 編輯標題';
-}
-
-function saveTitle(){
-  const title = document.getElementById('input-title').value.trim() || '專案管控';
-  const sub = document.getElementById('input-sub').value.trim();
-  document.getElementById('disp-title').textContent = title;
-  document.getElementById('disp-sub').textContent = sub;
-  document.title = title;
-  localStorage.setItem(TITLE_KEY, JSON.stringify({title, sub}));
-  toggleTitlePanel();
-}
-
-const STORAGE_KEY = 'huwei_tracker_v2';
+const TITLE_KEY   = 'huwei_tracker_title_v1';
+const STORAGE_KEY = 'huwei_tracker_v3';
+const NOTICE_KEY  = 'huwei_tracker_notice_v1';
+const OWNER_KEY   = 'huwei_tracker_owners_v1';
 const today = new Date(); today.setHours(0,0,0,0);
 let nextId = 9000;
 let saveTimer = null;
+let dragSrcIdx = null;
+let sortByDate = false;
+let owners = ['23','指導老師','攝影師'];
 
-const DEFAULT = [
+/* ── title ── */
+function loadTitle(){
+  try{
+    const t=JSON.parse(localStorage.getItem(TITLE_KEY));
+    if(t){
+      document.getElementById('disp-title').textContent=t.title;
+      document.getElementById('disp-sub').textContent=t.sub;
+      document.getElementById('input-title').value=t.title;
+      document.getElementById('input-sub').value=t.sub;
+      document.title=t.title;
+    }
+  }catch(e){}
+}
+function saveTitle(){
+  const title=document.getElementById('input-title').value.trim()||'專案管控';
+  const sub=document.getElementById('input-sub').value.trim();
+  document.getElementById('disp-title').textContent=title;
+  document.getElementById('disp-sub').textContent=sub;
+  document.title=title;
+  localStorage.setItem(TITLE_KEY,JSON.stringify({title,sub}));
+  togglePanel('title-panel','edit-title-btn','編輯標題');
+}
+function togglePanel(panelId,btnId,label){
+  const panel=document.getElementById(panelId);
+  const btn=document.getElementById(btnId);
+  const isOpen=panel.classList.toggle('open');
+  if(btn) btn.innerHTML=isOpen
+    ?'<i class="ti ti-x" style="font-size:13px"></i> 關閉'
+    :`<i class="ti ti-pencil" style="font-size:13px"></i> ${label}`;
+}
+
+/* ── notice ── */
+function loadNotice(){
+  const v=localStorage.getItem(NOTICE_KEY)||'';
+  const ta=document.getElementById('notice-textarea');
+  ta.value=v;
+  autoResize(ta);
+}
+function saveNotice(ta){
+  localStorage.setItem(NOTICE_KEY,ta.value);
+  autoResize(ta);
+}
+function autoResize(ta){ta.style.height='auto';ta.style.height=ta.scrollHeight+'px';}
+
+/* ── owners ── */
+function loadOwners(){
+  try{const o=JSON.parse(localStorage.getItem(OWNER_KEY));if(o&&o.length)owners=o;}catch(e){}
+  renderOwnerPanel();
+}
+function saveOwners(){localStorage.setItem(OWNER_KEY,JSON.stringify(owners));}
+function renderOwnerPanel(){
+  const el=document.getElementById('owner-list');
+  if(!el)return;
+  el.innerHTML=owners.map((o,i)=>`
+    <span class="owner-tag">${esc(o)}
+      <button onclick="removeOwner(${i})" title="移除"><i class="ti ti-x"></i></button>
+    </span>`).join('');
+}
+function addOwner(){
+  const inp=document.getElementById('new-owner-input');
+  const v=inp.value.trim();
+  if(!v||owners.includes(v))return;
+  owners.push(v);saveOwners();renderOwnerPanel();inp.value='';
+}
+function removeOwner(idx){
+  owners.splice(idx,1);saveOwners();renderOwnerPanel();
+}
+window.removeOwner=removeOwner;
+
+/* ── data ── */
+const DEFAULT=[
   {id:1,name:'研究調查與定案',open:true,tasks:[
-    {id:101,name:'五大場域田野調查',owner:'23',date:'2026-05-25',status:'done'},
-    {id:102,name:'SDGs 概念對應表',owner:'23',date:'2026-05-28',status:'done'},
-    {id:103,name:'品牌定位確認',owner:'指導老師',date:'2026-06-05',status:'wip'},
+    {id:101,name:'五大場域田野調查',detail:'',owner:'23',date:'2026-05-25',status:'done'},
+    {id:102,name:'SDGs 概念對應表',detail:'',owner:'23',date:'2026-05-28',status:'done'},
+    {id:103,name:'品牌定位確認',detail:'',owner:'指導老師',date:'2026-06-05',status:'wip'},
   ]},
   {id:2,name:'視覺識別系統',open:true,tasks:[
-    {id:201,name:'主視覺 Logo 設計',owner:'23',date:'2026-06-10',status:'wip'},
-    {id:202,name:'色票＋字型規範',owner:'23',date:'2026-06-15',status:'todo'},
-    {id:203,name:'延伸應用品設計',owner:'23',date:'2026-06-20',status:'todo'},
+    {id:201,name:'主視覺 Logo 設計',detail:'',owner:'23',date:'2026-06-10',status:'wip'},
+    {id:202,name:'色票＋字型規範',detail:'',owner:'23',date:'2026-06-15',status:'todo'},
+    {id:203,name:'延伸應用品設計',detail:'',owner:'23',date:'2026-06-20',status:'todo'},
   ]},
   {id:3,name:'SDGs 概念產品',open:true,tasks:[
-    {id:301,name:'蔗糖禮盒打樣',owner:'23',date:'2026-06-18',status:'wip'},
-    {id:302,name:'文化護照印刷稿',owner:'23',date:'2026-06-22',status:'todo'},
-    {id:303,name:'產品攝影',owner:'攝影師',date:'2026-06-28',status:'todo'},
+    {id:301,name:'蔗糖禮盒打樣',detail:'',owner:'23',date:'2026-06-18',status:'wip'},
+    {id:302,name:'文化護照印刷稿',detail:'',owner:'23',date:'2026-06-22',status:'todo'},
+    {id:303,name:'產品攝影',detail:'',owner:'攝影師',date:'2026-06-28',status:'todo'},
   ]},
   {id:4,name:'互動地圖網頁',open:false,tasks:[
-    {id:401,name:'網站架構與線稿',owner:'23',date:'2026-06-12',status:'done'},
-    {id:402,name:'前端開發',owner:'23',date:'2026-07-01',status:'wip'},
-    {id:403,name:'內容填入與測試',owner:'23',date:'2026-07-08',status:'todo'},
+    {id:401,name:'網站架構與線稿',detail:'',owner:'23',date:'2026-06-12',status:'done'},
+    {id:402,name:'前端開發',detail:'',owner:'23',date:'2026-07-01',status:'wip'},
+    {id:403,name:'內容填入與測試',detail:'',owner:'23',date:'2026-07-08',status:'todo'},
   ]},
   {id:5,name:'手繪動畫製作',open:false,tasks:[
-    {id:501,name:'分鏡腳本定稿',owner:'23',date:'2026-06-08',status:'done'},
-    {id:502,name:'Procreate 逐幀繪製',owner:'23',date:'2026-07-05',status:'wip'},
-    {id:503,name:'After Effects 後製',owner:'23',date:'2026-07-15',status:'todo'},
-    {id:504,name:'輸出展場格式',owner:'23',date:'2026-07-18',status:'todo'},
+    {id:501,name:'分鏡腳本定稿',detail:'',owner:'23',date:'2026-06-08',status:'done'},
+    {id:502,name:'Procreate 逐幀繪製',detail:'',owner:'23',date:'2026-07-05',status:'wip'},
+    {id:503,name:'After Effects 後製',detail:'',owner:'23',date:'2026-07-15',status:'todo'},
+    {id:504,name:'輸出展場格式',detail:'',owner:'23',date:'2026-07-18',status:'todo'},
   ]},
   {id:6,name:'展覽佈置與發表',open:false,tasks:[
-    {id:601,name:'展場平面配置圖',owner:'23',date:'2026-07-10',status:'todo'},
-    {id:602,name:'展板輸出發包',owner:'指導老師',date:'2026-07-20',status:'todo'},
-    {id:603,name:'開幕活動企劃',owner:'23',date:'2026-07-25',status:'todo'},
-    {id:604,name:'論文口試準備',owner:'23',date:'2026-07-28',status:'todo'},
+    {id:601,name:'展場平面配置圖',detail:'',owner:'23',date:'2026-07-10',status:'todo'},
+    {id:602,name:'展板輸出發包',detail:'',owner:'指導老師',date:'2026-07-20',status:'todo'},
+    {id:603,name:'開幕活動企劃',detail:'',owner:'23',date:'2026-07-25',status:'todo'},
+    {id:604,name:'論文口試準備',detail:'',owner:'23',date:'2026-07-28',status:'todo'},
   ]},
 ];
 
-let data = [];
+let data=[];
 
 function loadData(){
-  try{ data = JSON.parse(localStorage.getItem(STORAGE_KEY)) || JSON.parse(JSON.stringify(DEFAULT)); }
-  catch(e){ data = JSON.parse(JSON.stringify(DEFAULT)); }
+  try{
+    const saved=JSON.parse(localStorage.getItem(STORAGE_KEY));
+    if(saved&&saved.length){
+      data=saved.map(ms=>({...ms,tasks:(ms.tasks||[]).map(t=>({detail:'',showDetail:false,...t}))}));
+    } else { data=JSON.parse(JSON.stringify(DEFAULT)); }
+  }catch(e){ data=JSON.parse(JSON.stringify(DEFAULT)); }
   render();
 }
 
 function saveData(){
   clearTimeout(saveTimer);
   setSyncStatus('saving','儲存中…');
-  saveTimer = setTimeout(()=>{
+  saveTimer=setTimeout(()=>{
     try{
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+      const toSave=data.map(ms=>({...ms,tasks:ms.tasks.map(({showDetail,...t})=>t)}));
+      localStorage.setItem(STORAGE_KEY,JSON.stringify(toSave));
       setSyncStatus('saved','已同步');
     }catch(e){ setSyncStatus('err','儲存失敗'); }
-  }, 600);
+  },600);
 }
 
-function setSyncStatus(state, msg){
-  const el = document.getElementById('sync-badge');
-  if(!el) return;
-  el.className = 'sync-badge ' + state;
-  const icons = {saving:'loader',saved:'check',err:'alert-circle'};
-  el.innerHTML = `<i class="ti ti-${icons[state]}" style="font-size:12px"></i> ${msg}`;
+function setSyncStatus(state,msg){
+  const el=document.getElementById('sync-badge');
+  if(!el)return;
+  el.className='sync-badge '+state;
+  const icons={saving:'loader',saved:'check',err:'alert-circle'};
+  el.innerHTML=`<i class="ti ti-${icons[state]}" style="font-size:12px"></i> ${msg}`;
 }
 
-function daysLeft(d){ if(!d) return null; const dt=new Date(d); dt.setHours(0,0,0,0); return Math.round((dt-today)/86400000); }
-function cdLabel(n,done){ if(done||n===null) return ''; if(n<0) return `逾期 ${Math.abs(n)} 天`; if(n===0) return '今天到期'; return `剩 ${n} 天`; }
-function calcPct(tasks){ if(!tasks.length) return 0; return Math.round(tasks.filter(t=>t.status==='done').length/tasks.length*100); }
-function esc(s){ return (s||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;'); }
-function getTask(msId,tId){ const ms=data.find(m=>m.id===msId); return ms?ms.tasks.find(t=>t.id===tId):null; }
+function daysLeft(d){if(!d)return null;const dt=new Date(d);dt.setHours(0,0,0,0);return Math.round((dt-today)/86400000);}
+function cdLabel(n,done){if(done||n===null)return '';if(n<0)return `逾期 ${Math.abs(n)} 天`;if(n===0)return '今天到期';return `剩 ${n} 天`;}
+function calcPct(tasks){if(!tasks.length)return 0;return Math.round(tasks.filter(t=>t.status==='done').length/tasks.length*100);}
+function esc(s){return(s||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');}
+function getTask(msId,tId){const ms=data.find(m=>m.id===msId);return ms?ms.tasks.find(t=>t.id===tId):null;}
 
 function stats(){
   let all=0,done=0,late=0;
-  data.forEach(m=>m.tasks.forEach(t=>{ all++; if(t.status==='done') done++; if(t.status!=='done'&&t.date&&daysLeft(t.date)<0) late++; }));
+  data.forEach(m=>m.tasks.forEach(t=>{all++;if(t.status==='done')done++;if(t.status!=='done'&&t.date&&daysLeft(t.date)<0)late++;}));
   return{all,done,late,msDone:data.filter(m=>calcPct(m.tasks)===100).length};
 }
 
+/* ── render ── */
 function render(){
-  const st = stats();
-  const overall = st.all ? Math.round(st.done/st.all*100) : 0;
+  const st=stats();
+  const overall=st.all?Math.round(st.done/st.all*100):0;
 
-  document.getElementById('summary').innerHTML = `
+  document.getElementById('summary').innerHTML=`
     <div class="stat"><div class="stat-label">整體進度</div><div class="stat-val">${overall}%</div></div>
     <div class="stat"><div class="stat-label">里程碑完成</div><div class="stat-val">${st.msDone} / ${data.length}</div></div>
     <div class="stat"><div class="stat-label">任務完成</div><div class="stat-val">${st.done} / ${st.all}</div></div>
     <div class="stat"><div class="stat-label">逾期任務</div><div class="stat-val${st.late>0?' danger':''}">${st.late}</div></div>`;
 
+  // owner options html
+  const ownerOpts = `<option value="">—</option>`+owners.map(o=>`<option value="${esc(o)}">${esc(o)}</option>`).join('');
+
   let h='';
-  data.forEach(ms=>{
+  data.forEach((ms,msIdx)=>{
     const pct=calcPct(ms.tasks);
-    const pctClass = pct>=80?'':'pct-badge '+(pct>=40?'mid':'low');
-    h+=`<div class="milestone">
+    h+=`<div class="milestone" id="ms-${ms.id}" draggable="true"
+          ondragstart="onDragStart(event,${msIdx})"
+          ondragover="onDragOver(event,${msIdx})"
+          ondragleave="onDragLeave(event)"
+          ondrop="onDrop(event,${msIdx})"
+          ondragend="onDragEnd(event)">
       <div class="ms-header" onclick="toggleMs(${ms.id})">
-        <i class="ti ti-flag-3" aria-hidden="true" style="font-size:16px;color:var(--hint)"></i>
+        <span class="drag-handle" onclick="event.stopPropagation()" title="拖曳排序"><i class="ti ti-grip-vertical"></i></span>
         <input class="ms-name-input" value="${esc(ms.name)}" onclick="event.stopPropagation()" onchange="renameMilestone(${ms.id},this.value)">
         <div class="ms-meta">
           <span class="pct-badge ${pct>=80?'':pct>=40?'mid':'low'}">${pct}%</span>
-          <button class="ms-del" onclick="event.stopPropagation();deleteMilestone(${ms.id})" aria-label="刪除里程碑"><i class="ti ti-trash"></i></button>
+          <button class="ms-del" onclick="event.stopPropagation();deleteMilestone(${ms.id})" title="刪除里程碑"><i class="ti ti-trash"></i></button>
           <i class="ti ti-chevron-down chevron ${ms.open?'open':''}"></i>
         </div>
       </div>
       <div class="progress-wrap"><div class="progress-bar" style="width:${pct}%"></div></div>`;
+
     if(ms.open){
+      // sort tasks by date if enabled (no date goes to bottom)
+      let tasks=[...ms.tasks];
+      if(sortByDate){
+        tasks.sort((a,b)=>{
+          if(!a.date&&!b.date)return 0;
+          if(!a.date)return 1;
+          if(!b.date)return -1;
+          return a.date.localeCompare(b.date);
+        });
+      }
       h+=`<div class="tasks-area">
-        <div class="col-head"><span></span><span>任務</span><span class="owner-col" style="text-align:center">負責人</span><span style="text-align:center">截止日期</span><span style="text-align:center">狀態</span><span></span></div>`;
-      ms.tasks.forEach(t=>{
-        const n=daysLeft(t.date); const isLate=t.status!=='done'&&n!==null&&n<0;
+        <div class="col-head">
+          <span></span>
+          <span>任務</span>
+          <span class="owner-col" style="text-align:center">負責人</span>
+          <span style="text-align:center;display:flex;align-items:center;justify-content:center;gap:3px">
+            截止日期
+            <button class="sort-btn ${sortByDate?'active':''}" onclick="event.stopPropagation();toggleSort()" title="${sortByDate?'取消日期排序':'依截止日期排序'}">
+              <i class="ti ti-arrows-sort" style="font-size:11px"></i>${sortByDate?'排序中':''}
+            </button>
+          </span>
+          <span style="text-align:center">狀態</span>
+          <span title="詳細事項" style="text-align:center"><i class="ti ti-notes" style="font-size:12px"></i></span>
+          <span></span>
+        </div>`;
+      tasks.forEach((t)=>{
+        const n=daysLeft(t.date);const isLate=t.status!=='done'&&n!==null&&n<0;
         const cd=cdLabel(n,t.status==='done');
+        const showDet=!!t.showDetail;
         h+=`<div class="task-row">
           <input type="checkbox" ${t.status==='done'?'checked':''} onchange="toggleDone(${ms.id},${t.id},this.checked)">
           <div class="task-cell">
             <input class="task-name${t.status==='done'?' done':''}" value="${esc(t.name)}" onchange="renameTask(${ms.id},${t.id},this.value)">
+            ${showDet?`<textarea class="task-detail" rows="1" placeholder="詳細說明、備註、連結…" onchange="updateDetail(${ms.id},${t.id},this.value)" oninput="autoResize(this)">${esc(t.detail||'')}</textarea>`:''}
             ${cd?`<span class="countdown${isLate?' urgent':''}">${cd}</span>`:''}
           </div>
-          <input class="task-owner" value="${esc(t.owner)}" onchange="updateOwner(${ms.id},${t.id},this.value)" placeholder="—">
+          <select class="task-owner" onchange="updateOwner(${ms.id},${t.id},this.value)">
+            ${ownerOpts.replace(`value="${esc(t.owner)}"`,`value="${esc(t.owner)}" selected`)}
+          </select>
           <input type="date" class="task-date" value="${t.date||''}" onchange="updateDate(${ms.id},${t.id},this.value)">
           <select class="status-sel" onchange="updateStatus(${ms.id},${t.id},this.value)">
             ${['done','wip','todo'].map(s=>`<option value="${s}"${t.status===s?' selected':''}>${{done:'完成',wip:'進行中',todo:'待辦'}[s]}</option>`).join('')}
           </select>
+          <button class="detail-toggle" onclick="toggleDetail(${ms.id},${t.id})" title="${showDet?'收起':'展開詳細事項'}">
+            <i class="ti ti-${showDet?'notes-off':'notes'}" style="font-size:14px;color:${(t.detail&&t.detail.trim())?'var(--green)':'var(--hint)'}"></i>
+          </button>
           <button class="del-btn" onclick="deleteTask(${ms.id},${t.id})"><i class="ti ti-x"></i></button>
         </div>`;
       });
@@ -314,33 +437,69 @@ function render(){
     h+=`</div>`;
   });
   document.getElementById('milestones').innerHTML=h;
+
+  document.querySelectorAll('.task-detail').forEach(ta=>{autoResize(ta);});
+  renderOwnerPanel();
 }
 
-function exportCSV(){
-  let rows=[['里程碑','任務','負責人','截止日期','狀態','逾期天數']];
-  data.forEach(ms=>ms.tasks.forEach(t=>{
-    const n=daysLeft(t.date);
-    const late=t.status!=='done'&&n!==null&&n<0?Math.abs(n):'';
-    rows.push([ms.name,t.name,t.owner,t.date,{done:'完成',wip:'進行中',todo:'待辦'}[t.status],late]);
-  }));
-  const csv='\uFEFF'+rows.map(r=>r.map(c=>`"${(c||'').toString().replace(/"/g,'""')}"`).join(',')).join('\n');
-  const a=document.createElement('a'); a.href='data:text/csv;charset=utf-8,'+encodeURIComponent(csv);
-  a.download='huwei-project-tracker.csv'; a.click();
+/* ── drag & drop milestone reorder ── */
+function onDragStart(e,idx){
+  dragSrcIdx=idx;
+  e.dataTransfer.effectAllowed='move';
+  setTimeout(()=>e.target.classList.add('dragging'),0);
+}
+function onDragOver(e,idx){
+  e.preventDefault();
+  if(idx===dragSrcIdx)return;
+  document.getElementById('ms-'+data[idx].id).classList.add('drag-over');
+}
+function onDragLeave(e){e.currentTarget.classList.remove('drag-over');}
+function onDrop(e,idx){
+  e.preventDefault();
+  if(idx===dragSrcIdx){e.currentTarget.classList.remove('drag-over');return;}
+  const moved=data.splice(dragSrcIdx,1)[0];
+  data.splice(idx,0,moved);
+  saveData();render();
+}
+function onDragEnd(e){
+  e.target.classList.remove('dragging');
+  document.querySelectorAll('.milestone').forEach(el=>el.classList.remove('drag-over'));
+  dragSrcIdx=null;
 }
 
+/* ── actions ── */
 window.toggleMs=id=>{const m=data.find(x=>x.id===id);if(m)m.open=!m.open;saveData();render();}
 window.renameMilestone=(id,v)=>{const m=data.find(x=>x.id===id);if(m)m.name=v;saveData();}
 window.deleteMilestone=id=>{if(!confirm('確定刪除這個里程碑及所有子任務？'))return;data=data.filter(m=>m.id!==id);saveData();render();}
 window.addMilestone=()=>{data.push({id:++nextId,name:'新里程碑',open:true,tasks:[]});saveData();render();}
 window.toggleDone=(msId,tId,c)=>{const t=getTask(msId,tId);if(t)t.status=c?'done':'todo';saveData();render();}
 window.renameTask=(msId,tId,v)=>{const t=getTask(msId,tId);if(t)t.name=v;saveData();}
+window.updateDetail=(msId,tId,v)=>{const t=getTask(msId,tId);if(t)t.detail=v;saveData();}
 window.updateOwner=(msId,tId,v)=>{const t=getTask(msId,tId);if(t)t.owner=v;saveData();}
 window.updateDate=(msId,tId,v)=>{const t=getTask(msId,tId);if(t)t.date=v;saveData();render();}
 window.updateStatus=(msId,tId,v)=>{const t=getTask(msId,tId);if(t)t.status=v;saveData();render();}
 window.deleteTask=(msId,tId)=>{const ms=data.find(m=>m.id===msId);if(ms){ms.tasks=ms.tasks.filter(t=>t.id!==tId);saveData();render();}}
-window.addTask=msId=>{const ms=data.find(m=>m.id===msId);if(ms){ms.tasks.push({id:++nextId,name:'新任務',owner:'',date:'',status:'todo'});saveData();render();}}
+window.addTask=msId=>{const ms=data.find(m=>m.id===msId);if(ms){ms.tasks.push({id:++nextId,name:'新任務',detail:'',owner:'',date:'',status:'todo',showDetail:false});saveData();render();}}
+window.toggleDetail=(msId,tId)=>{const t=getTask(msId,tId);if(t){t.showDetail=!t.showDetail;render();}}
+
+/* ── export ── */
+function exportCSV(){
+  let rows=[['里程碑','任務','詳細事項','負責人','截止日期','狀態','逾期天數']];
+  data.forEach(ms=>ms.tasks.forEach(t=>{
+    const n=daysLeft(t.date);
+    const late=t.status!=='done'&&n!==null&&n<0?Math.abs(n):'';
+    rows.push([ms.name,t.name,t.detail||'',t.owner,t.date,{done:'完成',wip:'進行中',todo:'待辦'}[t.status],late]);
+  }));
+  const csv='\uFEFF'+rows.map(r=>r.map(c=>`"${(c||'').toString().replace(/"/g,'""')}"`).join(',')).join('\n');
+  const a=document.createElement('a');a.href='data:text/csv;charset=utf-8,'+encodeURIComponent(csv);
+  a.download='huwei-project-tracker.csv';a.click();
+}
+
+window.toggleSort=()=>{sortByDate=!sortByDate;render();}
 
 loadTitle();
+loadNotice();
+loadOwners();
 loadData();
 </script>
 </body>
