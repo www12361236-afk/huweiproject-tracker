@@ -103,7 +103,9 @@ input[type=checkbox]{width:15px;height:15px;cursor:pointer;accent-color:var(--gr
 .sort-btn.active{color:var(--green)}
 /* owner manager panel */
 .owner-list{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
-.owner-tag{display:inline-flex;align-items:center;gap:4px;font-size:12px;padding:3px 10px;border-radius:20px;background:var(--gray-bg);color:var(--gray-text)}
+.owner-tag{display:inline-flex;align-items:center;gap:4px;font-size:12px;padding:3px 8px 3px 10px;border-radius:20px;background:var(--gray-bg);color:var(--gray-text)}
+.owner-name-input{font-size:12px;border:none;background:transparent;color:var(--gray-text);font-family:'Noto Sans TC',sans-serif;outline:none;width:auto;min-width:40px;max-width:120px;cursor:text}
+.owner-name-input:focus{border-bottom:1px solid var(--green);}
 .owner-tag button{background:none;border:none;cursor:pointer;color:var(--hint);font-size:12px;padding:0;display:flex;align-items:center}
 .owner-tag button:hover{color:var(--red)}
 .owner-add-row{display:flex;gap:6px;margin-top:10px}
@@ -142,7 +144,7 @@ footer{text-align:center;padding:2rem;font-size:12px;color:var(--hint);margin-to
   </div>
   <div class="header-right">
     <button class="hdr-btn" onclick="togglePanel('title-panel','edit-title-btn','編輯標題')" id="edit-title-btn"><i class="ti ti-pencil" style="font-size:13px"></i> 編輯標題</button>
-    <button class="hdr-btn" onclick="togglePanel('owner-panel','manage-owner-btn','管理成員')" id="manage-owner-btn"><i class="ti ti-users" style="font-size:13px"></i> 管理成員</button>
+    <button class="hdr-btn" onclick="togglePanel('owner-panel','manage-owner-btn','管理負責人')" id="manage-owner-btn"><i class="ti ti-users" style="font-size:13px"></i> 管理負責人</button>
     <button class="hdr-btn" onclick="exportCSV()"><i class="ti ti-download" style="font-size:13px"></i> 匯出 CSV</button>
     <span class="sync-badge saved" id="sync-badge"><i class="ti ti-check" style="font-size:12px"></i> 已同步</span>
   </div>
@@ -161,16 +163,16 @@ footer{text-align:center;padding:2rem;font-size:12px;color:var(--hint);margin-to
     </div>
   </div>
 
-  <!-- 管理成員 panel -->
+  <!-- 管理負責人 panel -->
   <div class="edit-panel" id="owner-panel">
-    <label>成員名單</label>
+    <label>負責人名單　<span style="font-size:11px;color:var(--hint);text-transform:none;letter-spacing:0">點名稱可直接改名</span></label>
     <div class="owner-list" id="owner-list"></div>
     <div class="owner-add-row">
-      <input id="new-owner-input" placeholder="輸入新成員名稱" onkeydown="if(event.key==='Enter')addOwner()">
+      <input id="new-owner-input" placeholder="輸入新負責人名稱" onkeydown="if(event.key==='Enter')addOwner()">
       <button class="btn-green" onclick="addOwner()"><i class="ti ti-plus" style="font-size:13px"></i> 新增</button>
     </div>
     <div class="panel-actions" style="margin-top:10px">
-      <button class="btn-outline" onclick="togglePanel('owner-panel','manage-owner-btn','管理成員')">關閉</button>
+      <button class="btn-outline" onclick="togglePanel('owner-panel','manage-owner-btn','管理負責人')">關閉</button>
     </div>
   </div>
 
@@ -253,10 +255,23 @@ function renderOwnerPanel(){
   const el=document.getElementById('owner-list');
   if(!el)return;
   el.innerHTML=owners.map((o,i)=>`
-    <span class="owner-tag">${esc(o)}
+    <span class="owner-tag">
+      <input class="owner-name-input" value="${esc(o)}" onchange="renameOwner(${i},this.value)" title="點擊改名">
       <button onclick="removeOwner(${i})" title="移除"><i class="ti ti-x"></i></button>
     </span>`).join('');
 }
+function renameOwner(idx, newName){
+  const v = newName.trim();
+  if(!v) return;
+  const old = owners[idx];
+  owners[idx] = v;
+  // update any tasks that had the old name
+  data.forEach(ms=>ms.tasks.forEach(t=>{ if(t.owner===old) t.owner=v; }));
+  saveOwners();
+  saveData();
+  render();
+}
+window.renameOwner = renameOwner;
 function addOwner(){
   const inp=document.getElementById('new-owner-input');
   const v=inp.value.trim();
@@ -359,9 +374,6 @@ function render(){
     <div class="stat"><div class="stat-label">任務完成</div><div class="stat-val">${st.done} / ${st.all}</div></div>
     <div class="stat"><div class="stat-label">逾期任務</div><div class="stat-val${st.late>0?' danger':''}">${st.late}</div></div>`;
 
-  // owner options html
-  const ownerOpts = `<option value="">—</option>`+owners.map(o=>`<option value="${esc(o)}">${esc(o)}</option>`).join('');
-
   let h='';
   data.forEach((ms,msIdx)=>{
     const pct=calcPct(ms.tasks);
@@ -420,7 +432,9 @@ function render(){
             ${cd?`<span class="countdown${isLate?' urgent':''}">${cd}</span>`:''}
           </div>
           <select class="task-owner" onchange="updateOwner(${ms.id},${t.id},this.value)">
-            ${ownerOpts.replace(`value="${esc(t.owner)}"`,`value="${esc(t.owner)}" selected`)}
+            <option value="">—</option>
+            ${owners.map(o=>`<option value="${esc(o)}"${t.owner===o?' selected':''}>${esc(o)}</option>`).join('')}
+            ${t.owner && !owners.includes(t.owner) ? `<option value="${esc(t.owner)}" selected>${esc(t.owner)}（已移除）</option>` : ''}
           </select>
           <input type="date" class="task-date" value="${t.date||''}" onchange="updateDate(${ms.id},${t.id},this.value)">
           <select class="status-sel" onchange="updateStatus(${ms.id},${t.id},this.value)">
