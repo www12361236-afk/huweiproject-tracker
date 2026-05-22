@@ -127,11 +127,54 @@ input[type=checkbox]{width:15px;height:15px;cursor:pointer;accent-color:var(--gr
 footer{text-align:center;padding:2rem;font-size:12px;color:var(--hint);margin-top:1rem}
 
 @media(max-width:640px){
-  .summary-grid{grid-template-columns:repeat(2,1fr)}
-  .col-head,.task-row{grid-template-columns:22px 1fr 0 90px 70px 22px 18px}
-  .col-head .owner-col,.task-owner{display:none}
-  header{padding:1rem}
-  main{padding:1rem}
+  /* header */
+  header{padding:.75rem 1rem;flex-wrap:wrap;gap:8px;position:static}
+  .header-left{flex:1;min-width:0}
+  .proj-title{font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .proj-sub{font-size:11px}
+  .header-right{width:100%;display:flex;flex-wrap:wrap;gap:6px}
+  .hdr-btn{font-size:11px;padding:4px 9px;flex:1;justify-content:center}
+  .sync-badge{font-size:11px;padding:4px 9px}
+
+  /* main */
+  main{padding:.75rem}
+  .summary-grid{grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:1.25rem}
+  .stat{padding:.75rem 1rem}
+  .stat-val{font-size:20px}
+
+  /* milestone header */
+  .ms-header{padding:.75rem 1rem}
+  .ms-name-input{font-size:13px}
+
+  /* task table → 手機版只顯示：checkbox、任務名稱、狀態、刪除 */
+  .col-head{
+    grid-template-columns:22px 1fr 72px 22px;
+    padding:.35rem 1rem;
+  }
+  .col-head .owner-col,
+  .col-head .date-col,
+  .col-head .detail-col{display:none}
+
+  .task-row{
+    grid-template-columns:22px 1fr 72px 22px;
+    padding:.55rem 1rem;
+    gap:6px;
+  }
+  .task-owner,
+  .task-date,
+  .detail-toggle{display:none}
+
+  .status-sel{font-size:11px;padding:2px 2px}
+
+  /* 展開詳細後顯示負責人與日期在任務名稱下方 */
+  .task-cell{grid-column:2}
+  .task-meta-mobile{display:flex;gap:8px;margin-top:3px;flex-wrap:wrap}
+  .task-meta-mobile select,
+  .task-meta-mobile input[type=date]{
+    font-size:11px;border:1px solid var(--border);border-radius:var(--radius-sm);
+    background:var(--surface);color:var(--text);padding:2px 5px;
+    font-family:'Noto Sans TC',sans-serif;
+  }
 }
 </style>
 </head>
@@ -410,14 +453,14 @@ function render(){
           <span></span>
           <span>任務</span>
           <span class="owner-col" style="text-align:center">負責人</span>
-          <span style="text-align:center;display:flex;align-items:center;justify-content:center;gap:3px">
+          <span class="date-col" style="text-align:center;display:flex;align-items:center;justify-content:center;gap:3px">
             截止日期
             <button class="sort-btn ${sortByDate?'active':''}" onclick="event.stopPropagation();toggleSort()" title="${sortByDate?'取消日期排序':'依截止日期排序'}">
               <i class="ti ti-arrows-sort" style="font-size:11px"></i>${sortByDate?'排序中':''}
             </button>
           </span>
           <span style="text-align:center">狀態</span>
-          <span title="詳細事項" style="text-align:center"><i class="ti ti-notes" style="font-size:12px"></i></span>
+          <span class="detail-col" title="詳細事項" style="text-align:center"><i class="ti ti-notes" style="font-size:12px"></i></span>
           <span></span>
         </div>`;
       tasks.forEach((t)=>{
@@ -429,6 +472,14 @@ function render(){
           <div class="task-cell">
             <input class="task-name${t.status==='done'?' done':''}" value="${esc(t.name)}" onchange="renameTask(${ms.id},${t.id},this.value)">
             ${showDet?`<textarea class="task-detail" rows="1" placeholder="詳細說明、備註、連結…" onchange="updateDetail(${ms.id},${t.id},this.value)" oninput="autoResize(this)">${esc(t.detail||'')}</textarea>`:''}
+            <div class="task-meta-mobile">
+              <select onchange="updateOwner(${ms.id},${t.id},this.value)">
+                <option value="">— 負責人</option>
+                ${owners.map(o=>`<option value="${esc(o)}"${t.owner===o?' selected':''}>${esc(o)}</option>`).join('')}
+                ${t.owner && !owners.includes(t.owner) ? `<option value="${esc(t.owner)}" selected>${esc(t.owner)}（已移除）</option>` : ''}
+              </select>
+              <input type="date" value="${t.date||''}" onchange="updateDate(${ms.id},${t.id},this.value)">
+            </div>
             ${cd?`<span class="countdown${isLate?' urgent':''}">${cd}</span>`:''}
           </div>
           <select class="task-owner" onchange="updateOwner(${ms.id},${t.id},this.value)">
